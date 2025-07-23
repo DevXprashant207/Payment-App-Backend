@@ -18,10 +18,9 @@ router.post("/signup", async (req, res) => {
     const { success } = signupBody.safeParse(req.body)
     if (!success) {
         return res.status(411).json({
-            message: "Email already taken / Incorrect inputs"
+            message: "Email already taken / Incorrect inputs -> username should be an email, password should be at least 6 characters, and firstname/lastname should not be empty."
         })
     }
-
     const existingUser = await User.findOne({
         username: req.body.username
     })
